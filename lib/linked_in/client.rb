@@ -18,6 +18,10 @@ module LinkedIn
       @cache = cache
     end
 
+    def add_cache(cache)
+      @cache = cache
+    end
+
     #
     # def current_status
     #   path = "/people/~/current-status"

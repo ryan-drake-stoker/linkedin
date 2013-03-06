@@ -16,7 +16,7 @@ module LinkedIn
           headers =  DEFAULT_HEADERS.merge(options)
           response = @cache ? @cache.request(f_path, headers) || access_token.get(f_path, headers) : access_token.get(f_path, headers)
           raise_errors(response)
-          @cache.response(f_path, headers, response)
+          @cache.response(f_path, headers, response) if @cache
           response.body
         end
 

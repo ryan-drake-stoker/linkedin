@@ -12,7 +12,7 @@ module LinkedIn
       protected
 
         def get(path, options={})
-          f_path = ("#{API_PATH}#{path}"
+          f_path = "#{API_PATH}#{path}"
           headers =  DEFAULT_HEADERS.merge(options)
           response = @cache ? @cache.request(f_path, headers) || access_token.get(f_path, headers) : access_token.get(f_path, headers)
           raise_errors(response)

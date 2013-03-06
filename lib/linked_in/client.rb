@@ -11,10 +11,11 @@ module LinkedIn
 
     attr_reader :consumer_token, :consumer_secret, :consumer_options
 
-    def initialize(ctoken=LinkedIn.token, csecret=LinkedIn.secret, options={})
+    def initialize(ctoken=LinkedIn.token, csecret=LinkedIn.secret, options={}, cache = nil)
       @consumer_token   = ctoken
       @consumer_secret  = csecret
       @consumer_options = options
+      @cache = cache
     end
 
     #

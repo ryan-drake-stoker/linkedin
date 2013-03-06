@@ -14,10 +14,21 @@ module LinkedIn
         def get(path, options={})
           f_path = "#{API_PATH}#{path}"
           headers =  DEFAULT_HEADERS.merge(options)
-          response = @cache ? @cache.request(f_path, headers) || access_token.get(f_path, headers) : access_token.get(f_path, headers)
-          raise_errors(response)
-          @cache.response(f_path, headers, response) if @cache
-          response.body
+          if @cache
+            cache_response = @cache.request(f_path, headers, user_specific)
+            if cache_response.nil?
+              response = access_token.get(f_path, headers)
+              raise_errors(response)
+              @cache.response(f_path, headers, response, user_specific)
+              response.body
+            else
+              cache_response
+            end
+          else
+            response = access_token.get(f_path, headers)
+            raise_errors(response)
+            response.body
+          end
         end
 
         def post(path, body='', options={})

@@ -15,11 +15,11 @@ module LinkedIn
           f_path = "#{API_PATH}#{path}"
           headers =  DEFAULT_HEADERS.merge(options)
           if @cache
-            cache_response = @cache.request(f_path, headers, user_specific)
+            cache_response = @cache.request(f_path, headers)
             if cache_response.nil?
               response = access_token.get(f_path, headers)
               raise_errors(response)
-              @cache.response(f_path, headers, response, user_specific)
+              @cache.response(f_path, headers, response)
               response.body
             else
               cache_response

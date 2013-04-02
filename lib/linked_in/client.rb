@@ -9,7 +9,7 @@ module LinkedIn
     include Api::UpdateMethods
     include Search
 
-    attr_reader :consumer_token, :consumer_secret, :consumer_options
+    attr_reader :consumer_token, :consumer_secret, :consumer_options, :cache
 
     def initialize(ctoken=LinkedIn.token, csecret=LinkedIn.secret, options={}, cache = nil)
       @consumer_token   = ctoken
